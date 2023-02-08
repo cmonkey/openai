@@ -24,4 +24,14 @@ class OpenaiApplicationTests {
 		assertNotNull(messages);
 	}
 
+	@Test
+	@DisplayName("test query models")
+	public void testQueryModles(){
+		var optional = openaiRequestService.queryModels();
+		assertNotNull(optional);
+		var models = optional.get();
+		assertNotNull(models);
+		models.forEach(System.out::println);
+	}
+
 }
