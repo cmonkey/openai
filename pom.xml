@@ -15,6 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>19</java.version>
+		<openapi_gpt3.version>0.9.0</openapi_gpt3.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -37,6 +38,16 @@
 			<groupId>io.projectreactor</groupId>
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.theokanning.openai-gpt3-java</groupId>
+			<artifactId>api</artifactId>
+			<version>${openapi_gpt3.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.theokanning.openai-gpt3-java</groupId>
+			<artifactId>client</artifactId>
+			<version>${openapi_gpt3.version}</version>
 		</dependency>
 	</dependencies>
 
