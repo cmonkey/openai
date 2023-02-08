@@ -3,6 +3,7 @@ package com.excavator.boot.openai.service;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
+import com.theokanning.openai.model.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,11 @@ public class OpenaiRequestService {
 
     public OpenaiRequestService(OpenAiService openAiService) {
         this.openAiService = openAiService;
+    }
+
+    public Optional<List<Model>> queryModels(){
+        var models = openAiService.listModels();
+        return Optional.ofNullable(models);
     }
 
     public Optional<List<String>> doRequest(String prompt){
