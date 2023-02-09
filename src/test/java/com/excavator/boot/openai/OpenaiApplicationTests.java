@@ -27,7 +27,7 @@ class OpenaiApplicationTests {
 
 	@Test
 	@DisplayName("test query models")
-	public void testQueryModles(){
+	public void testQueryModels(){
 		var optional = openaiRequestService.queryModels();
 		assertNotNull(optional);
 		var models = optional.get();
