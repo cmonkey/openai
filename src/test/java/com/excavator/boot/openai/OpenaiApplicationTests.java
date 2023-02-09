@@ -38,4 +38,14 @@ class OpenaiApplicationTests {
 		assertTrue(modelMatch);
 	}
 
+	@Test
+	@DisplayName("test query files")
+	public void testQueryFiles(){
+		var optional = openaiRequestService.queryFiles();
+		assertNotNull(optional);
+		var files = optional.get();
+		assertNotNull(files);
+		files.forEach(System.out::println);
+	}
+
 }
