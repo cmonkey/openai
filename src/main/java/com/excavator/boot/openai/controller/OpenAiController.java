@@ -24,6 +24,6 @@ public class OpenAiController {
 
     @GetMapping("/models")
     public Flux<List<Model>> queryModels(){
-        return openaiRequestService.queryModels().map(models -> Flux.just(models)).orElse(Flux.empty());
+        return openaiRequestService.queryModels().map(Flux::just).orElse(Flux.empty());
     }
 }
