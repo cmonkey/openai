@@ -3,6 +3,7 @@ package com.excavator.boot.openai.service;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
+import com.theokanning.openai.file.File;
 import com.theokanning.openai.model.Model;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,11 @@ public class OpenaiRequestService {
     public Optional<List<Model>> queryModels(){
         var models = openAiService.listModels();
         return Optional.ofNullable(models);
+    }
+
+    public Optional<List<File>> queryFiles(){
+        var files = openAiService.listFiles();
+        return Optional.ofNullable(files);
     }
 
     public Optional<List<String>> doRequest(String prompt){

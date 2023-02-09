@@ -1,12 +1,13 @@
 package com.excavator.boot.openai;
 
 import com.excavator.boot.openai.service.OpenaiRequestService;
+import com.theokanning.openai.model.Model;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class OpenaiApplicationTests {
@@ -32,6 +33,19 @@ class OpenaiApplicationTests {
 		var models = optional.get();
 		assertNotNull(models);
 		models.forEach(System.out::println);
+		var text_davinci_003_model = "text-davinci-003";
+		var modelMatch = models.stream().map(Model::getId).anyMatch(id -> id.equals(text_davinci_003_model));
+		assertTrue(modelMatch);
+	}
+
+	@Test
+	@DisplayName("test query files")
+	public void testQueryFiles(){
+		var optional = openaiRequestService.queryFiles();
+		assertNotNull(optional);
+		var files = optional.get();
+		assertNotNull(files);
+		files.forEach(System.out::println);
 	}
 
 }
