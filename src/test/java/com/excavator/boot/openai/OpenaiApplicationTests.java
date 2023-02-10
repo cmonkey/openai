@@ -18,7 +18,7 @@ class OpenaiApplicationTests {
 	@Test
 	@DisplayName("test prompt test")
 	public void testPromptTest(){
-		var prompt = "如何主持ChatGPT?";
+		var prompt = "如何问出一个好问题";
 		var optional = openaiRequestService.doRequest(prompt);
 		assertNotNull(optional);
 		var messages = optional.get();
