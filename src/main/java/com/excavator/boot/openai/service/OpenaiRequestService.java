@@ -1,5 +1,6 @@
 package com.excavator.boot.openai.service;
 
+import com.excavator.boot.openai.GptModelEnum;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
@@ -33,9 +34,14 @@ public class OpenaiRequestService {
     }
 
     public Optional<List<String>> doRequest(String prompt){
+        var model = "text-davinci-003";
+        return doPrompt(prompt,model);
+    }
+
+    private Optional<List<String>> doPrompt(String prompt,String model) {
         var request = CompletionRequest.builder()
                 .prompt(prompt)
-                .model("text-davinci-003")
+                .model(model)
                 .maxTokens(1024)
                 .n(1)
                 .stop(null)
@@ -47,4 +53,5 @@ public class OpenaiRequestService {
         var textList = choices.stream().map(CompletionChoice::getFinish_reason).toList();
         return Optional.of(textList);
     }
+
 }
