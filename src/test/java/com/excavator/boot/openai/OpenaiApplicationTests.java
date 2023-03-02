@@ -51,8 +51,18 @@ class OpenaiApplicationTests {
 	@Test
 	@DisplayName("test gpt3 model by model name is gpt-3.5-turbo-0301")
 	public void testGpt3ModelByModelNameIsGpt35turbo0303(){
-		var prompt = "如何问出一个好问题";
+		var prompt = "介绍一下你自己";
 		var optional = openaiRequestService.doRequest(prompt, GptModelEnum.GPT_3_5_TURBO_0301);
+		assertNotNull(optional);
+		var messages = optional.get();
+		assertNotNull(messages);
+	}
+
+	@Test
+	@DisplayName("test gpt3 model by model name is gpt-3.5-turbo")
+	public void testGpt3ModelByModelNameIsGpt35Turbo(){
+		var prompt = "gpt3.5 模型都可以实现什么";
+		var optional = openaiRequestService.doRequest(prompt, GptModelEnum.GPT_3_5_TURBO);
 		assertNotNull(optional);
 		var messages = optional.get();
 		assertNotNull(messages);
