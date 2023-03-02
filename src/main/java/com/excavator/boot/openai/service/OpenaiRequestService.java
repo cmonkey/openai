@@ -54,8 +54,4 @@ public class OpenaiRequestService {
         return Optional.of(textList);
     }
 
-
-    public Optional<List<String>> doRequest(String prompt, GptModelEnum gptModelEnum){
-        return doPrompt(prompt,gptModelEnum.getName());
-    }
 }
