@@ -1,6 +1,5 @@
 package com.excavator.boot.openai.service;
 
-import com.excavator.boot.openai.GptModelEnum;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionChoice;
 import com.theokanning.openai.completion.CompletionRequest;
