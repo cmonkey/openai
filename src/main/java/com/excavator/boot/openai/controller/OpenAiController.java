@@ -32,6 +32,7 @@ public class OpenAiController {
 
     @PostMapping("/chat")
     public Flux<List<String>> chat(@RequestBody List<ChatMessage> messages){
+        log.info("input is [{}]", messages);
         var r = chatCompletionService.doPrompt(messages, GptModelEnum.GPT_3_5_TURBO);
         return r.map(Flux::just).orElse(Flux.empty());
     }
