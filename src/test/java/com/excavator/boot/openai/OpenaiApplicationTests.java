@@ -55,10 +55,19 @@ class OpenaiApplicationTests {
 		files.forEach(System.out::println);
 	}
 
+	private void applyProxy(){
+		System.setProperty("http.proxyHost", "127.0.0.1");
+		System.setProperty("http.proxyPort", "1080");
+		System.setProperty("https.proxyPort", "1080");
+		System.setProperty("https.proxyPort", "1080");
+		System.setProperty("socksProxyHost", "127.0.0.1");
+		System.setProperty("socksProxyPort", "1080");
+	}
+
 	@Test
 	@DisplayName("test gpt3 model by model name is gpt-3.5-turbo-0301")
 	public void testGpt3ModelByModelNameIsGpt35turbo0303(){
-
+		applyProxy();
 		var messages = queryChatMessages();
 		var optional = chatCompletionService.doPrompt(messages, GptModelEnum.GPT_3_5_TURBO_0301);
 		assertNotNull(optional);
@@ -80,6 +89,7 @@ class OpenaiApplicationTests {
 	@Test
 	@DisplayName("test gpt3 model by model name is gpt-3.5-turbo")
 	public void testGpt3ModelByModelNameIsGpt35Turbo(){
+		applyProxy();
 		var messages = queryChatMessages();
 		var optional = chatCompletionService.doPrompt(messages, GptModelEnum.GPT_3_5_TURBO);
 		assertNotNull(optional);
