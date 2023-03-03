@@ -2,11 +2,14 @@ package com.excavator.boot.openai;
 
 import com.excavator.boot.openai.service.ChatCompletionService;
 import com.excavator.boot.openai.service.OpenaiRequestService;
+import com.theokanning.openai.completion.chat.ChatMessage;
 import com.theokanning.openai.model.Model;
 import jakarta.annotation.Resource;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -55,21 +58,33 @@ class OpenaiApplicationTests {
 	@Test
 	@DisplayName("test gpt3 model by model name is gpt-3.5-turbo-0301")
 	public void testGpt3ModelByModelNameIsGpt35turbo0303(){
-		var prompt = "介绍一下你自己";
-		var optional = chatCompletionService.doPrompt(prompt, GptModelEnum.GPT_3_5_TURBO_0301);
+
+		var messages = queryChatMessages();
+		var optional = chatCompletionService.doPrompt(messages, GptModelEnum.GPT_3_5_TURBO_0301);
 		assertNotNull(optional);
-		var messages = optional.get();
-		assertNotNull(messages);
+		var responseMessage = optional.get();
+		assertNotNull(responseMessage);
+	}
+
+	private List<ChatMessage> queryChatMessages(){
+		var systemChatMessage = new ChatMessage();
+		systemChatMessage.setRole("system");
+		systemChatMessage.setContent("输出为中文");
+
+		var userChatMessage = new ChatMessage();
+		userChatMessage.setRole("介绍一下清末民国的人口贩卖情况");
+
+		return List.of(systemChatMessage, userChatMessage);
 	}
 
 	@Test
 	@DisplayName("test gpt3 model by model name is gpt-3.5-turbo")
 	public void testGpt3ModelByModelNameIsGpt35Turbo(){
-		var prompt = "gpt3.5 模型都可以实现什么";
-		var optional = chatCompletionService.doPrompt(prompt, GptModelEnum.GPT_3_5_TURBO);
+		var messages = queryChatMessages();
+		var optional = chatCompletionService.doPrompt(messages, GptModelEnum.GPT_3_5_TURBO);
 		assertNotNull(optional);
-		var messages = optional.get();
-		assertNotNull(messages);
+		var responseMessage = optional.get();
+		assertNotNull(responseMessage);
 	}
 
 }
